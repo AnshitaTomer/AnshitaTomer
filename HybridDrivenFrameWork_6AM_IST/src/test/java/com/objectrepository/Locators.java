@@ -9,5 +9,9 @@ public class Locators {
 	public final By FBlogin_Password_EditBox = By.name("pass");
 	public final By FBlogin_Login_Button = By.xpath("//*[contains(@id,'u_0_d_')]");
 	
-	
+	//TTD
+	public final By TTD_FirstName_EditBox = By.name("fName");
+	public final By TTD_LastName_EditBox = By.name("lName");
+	public final By TTD_Mobile_EditBox = By.name("mobNo");
+	public final By TTD_DOB_Claender = By.id("regdob");
 }

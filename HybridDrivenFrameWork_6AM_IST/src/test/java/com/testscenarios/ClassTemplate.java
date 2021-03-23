@@ -1,6 +1,11 @@
 package com.testscenarios;
 
 import org.testng.annotations.Test;
+
+import com.objectrepository.Locators;
+import com.utilities.Commonfunctions;
+import com.utilities.Staticvariables;
+
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Optional;
@@ -16,8 +21,9 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterClass;
 
-public class ClassTemplate {
-	WebDriver driver;
+public class ClassTemplate extends Staticvariables {
+	Locators obj = new Locators();
+	Commonfunctions cfn = new Commonfunctions();
 
 	@Test
 	public void f() throws Exception {
@@ -29,23 +35,21 @@ public class ClassTemplate {
 	}
 
 	@AfterMethod
-	public void afterMethod() {
-		// take screenshot
+	public void afterMethod() throws Exception {
+		Thread.sleep(5000);
+		// Give Name of the Class before run
+		cfn.takeScreenshot("Give Name of the Class");
 	}
 
 	@Parameters("browserName")
 	@BeforeClass
 	public void beforeClass(@Optional("chrome") String browserName) {
 		if (browserName.equalsIgnoreCase("Chrome")) {
-			System.setProperty("webdriver.chrome.driver", ".//browserdrivers//chromedriver.exe");
-			driver = new ChromeDriver();
+			cfn.chromeBrowserLanuch();
 		} else if (browserName.equalsIgnoreCase("firefox")) {
-			System.setProperty("webdriver.gecko.driver", ".\\browserdrivers\\geckodriver.exe");
-			driver = new FirefoxDriver();
-
+			cfn.firefoxBrowserLanuch();
 		} else if (browserName.equalsIgnoreCase("edge")) {
-			System.setProperty("webdriver.edge.driver", ".\\browserdrivers\\msedgedriver.exe");
-			driver = new EdgeDriver();
+			cfn.edgeBrowserLanuch();
 		} else {
 			System.out.println("Please give valid browserName*********");
 		}
