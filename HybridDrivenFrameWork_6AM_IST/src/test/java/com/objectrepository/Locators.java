@@ -14,4 +14,13 @@ public class Locators {
 	public final By TTD_LastName_EditBox = By.name("lName");
 	public final By TTD_Mobile_EditBox = By.name("mobNo");
 	public final By TTD_DOB_Claender = By.id("regdob");
+	
+	//SeleniumEasyDemo Class
+	
+	public final By Seleniumeasydemo_textarea_textbox = By.id("textbox");
+	public final By Seleniumeasydemo_Generate_button = By.id("create");
+	public final By Seleniumeasydemo_Download_hyperlink = By.id("link-to-download");
+	
+	
+	
 }
