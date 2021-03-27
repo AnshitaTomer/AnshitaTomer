@@ -21,6 +21,31 @@ public class Locators {
 	public final By Seleniumeasydemo_Generate_button = By.id("create");
 	public final By Seleniumeasydemo_Download_hyperlink = By.id("link-to-download");
 	
+	//classtemplate2
+	public final By ISO_Button = By.xpath("//tr/td/a[@name='P-2Alist']");
 	
 	
+		
+		public final By TTD_DOB_Claender_Month =By.xpath("//select[@title='Change the month']");
+		public final By TTD_DOB_Claender_Year =By.xpath("//select[@title='Change the year']");
+		
+		
+		//nyiso
+		public final By nyiso_Zonal_Link = By.name("P-24Alist");
+		public final By nyiso_LastUpdated_Date = By.xpath("//table[@width='450']/tbody/tr[8]/td[2]/span");
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+//		
 }

@@ -53,18 +53,15 @@ public class TTD extends Staticvariables {
 		// implicitwait: Page load wait statement
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		// Month selection
-		Select dobMonth = new Select(driver.findElement(By.xpath("//select[@title='Change the month']")));
-		dobMonth.selectByVisibleText("August");
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		cfn.selectByVisibleText(obj.TTD_DOB_Claender_Month, prop.getProperty("DOB_Month"));
+		cfn.implicitWait(10);
 		// Month selection
-		Select dobYear = new Select(driver.findElement(By.xpath("//select[@title='Change the year']")));
-		dobYear.selectByVisibleText("1984");
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		cfn.selectByVisibleText(obj.TTD_DOB_Claender_Year, "1984");
+		cfn.implicitWait(10);
 		// Date picker
-		driver.findElement(By.linkText("14")).click();
-//		//click on 13 date on calender by using xpath(webtable one)
-//		driver.findElement(By.xpath("//div[@class='datepick-month']/table/tbody/tr[3]/td[5]/a")).click();
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		cfn.clickByAnyLocator(By.linkText("14"));
+		cfn.implicitWait(10);
+
 
 		// Click on Female option on Gender
 		driver.findElement(By.xpath("(//input[@name='gender'])[2]")).click();

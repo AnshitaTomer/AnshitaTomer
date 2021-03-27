@@ -3,14 +3,14 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.testscenarios.Seleniumeasydemo">
+      <class name="com.testscenarios.ClassTemplate2">
         <methods>
           <include name="f"/>
-          <include name="afterMethod"/>
           <include name="beforeClass"/>
+          <include name="afterMethod"/>
           <include name="afterClass"/>
         </methods>
-      </class> <!-- com.testscenarios.Seleniumeasydemo -->
+      </class> <!-- com.testscenarios.ClassTemplate2 -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
