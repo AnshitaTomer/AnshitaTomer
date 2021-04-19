@@ -14,29 +14,36 @@ import org.testng.annotations.Parameters;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.Properties;
+import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.AfterClass;
 
-public class DropdownSamples extends Staticvariables {
+public class ToyotaWindowHandling extends Staticvariables {
 	Locators obj = new Locators();
 	Commonfunctions cfn = new Commonfunctions();
 
 	@Test
 	public void f() throws Exception {
-		// get the data from property file
 		FileInputStream pathOfThePropertyFile = new FileInputStream(".\\testdata\\inputdata.properties");
 		Properties prop = new Properties();
 		prop.load(pathOfThePropertyFile);
+
+		driver.get(prop.getProperty("toyota_URL"));
+		driver.findElement(By.id("tgbgdpr-overlay-agree")).click();
 		
-		driver.get(prop.getProperty("baseURL"));
-		cfn.clickByAnyLocator(obj.FBlogin_Login_CreateNewAccount);
-		cfn.implicitWait(10);
-		//cfn.printAllDropdownValues(obj.FBlogin_Login_DOB_Month);
-		cfn.selectCustomiseOptionFromTheDropdownValues(obj.FBlogin_Login_DOB_Month, "May");
+		cfn.clickByAnyLocator(obj.toyota_finance_button);
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		
+		cfn.clickByAnyLocator(obj.toyota_select_car);
+		
 		
 	}
 
@@ -44,7 +51,7 @@ public class DropdownSamples extends Staticvariables {
 	public void afterMethod() throws Exception {
 		Thread.sleep(5000);
 		// Give Name of the Class before run
-		cfn.takeScreenshot("PrintAlltheValues");
+		cfn.takeScreenshot("Give Name of the Class");
 	}
 
 	@Parameters("browserName")
@@ -65,7 +72,7 @@ public class DropdownSamples extends Staticvariables {
 	@AfterClass
 	public void afterClass() {
 		// close the browser
-		driver.quit();
+		//driver.quit();
 	}
 
 }

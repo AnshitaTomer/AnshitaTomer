@@ -6,17 +6,20 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.OutputType;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.io.FileHandler;
 import org.openqa.selenium.opera.OperaDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -52,14 +55,14 @@ public class Commonfunctions extends Staticvariables {
 	}
 
 	/*********** Send keys ***************/
-	public void sendkeysByAnyLocator(By locator, String inputdata) {
+	public void sendkeysByAnyLocator(By locator , String inputData) throws Exception{
 		WebElement elelment = driver.findElement(locator);
 		if (elelment.isDisplayed()) {
 			if (elelment.isEnabled()) {
 				// clear(): system will check whether is any existing data available or not?
 				// if available, it clear the text
 				elelment.clear();
-				elelment.sendKeys(inputdata);
+				elelment.sendKeys(inputData);
 			} else {
 				System.out.println("Element is not NOT in Enable state, please check the locator");
 			}
@@ -273,5 +276,78 @@ public class Commonfunctions extends Staticvariables {
 		return elementpresenceCount;
 	}
 
+	
 
+	/************************* MouseHover Actions ************/
+
+	public void moveToOnElement(By locator) {
+		try {
+			WebElement element = driver.findElement(locator);
+			Actions actions = new Actions(driver);
+			actions.moveToElement(element);
+			actions.click().build().perform();
+		} catch (Exception e) {
+			System.out.println("Error in description: " + e.getStackTrace());
+		}
+	}
+
+	public void mouseHoverClickandHold(By locator) {
+		try {
+			WebElement element = driver.findElement(locator);
+			Actions actions = new Actions(driver);
+			actions.clickAndHold(element);
+			actions.click().build().perform();
+		} catch (Exception e) {
+			System.out.println("Error in description: " + e.getStackTrace());
+		}
+
+	}
+
+	public void mouseHoverContextClick(By locator) {
+		try {
+			WebElement element = driver.findElement(locator);
+			Actions actions = new Actions(driver);
+			actions.contextClick(element);
+			actions.click().build().perform();
+
+		} catch (Exception e) {
+			System.out.println("Error in description: " + e.getStackTrace());
+		}
+
+	}
+
+	public void doubleClick(By locator) {
+		try {
+			WebElement element = driver.findElement(locator);
+			Actions actions = new Actions(driver);
+			actions.doubleClick(element);
+			actions.click().build().perform();
+
+		} catch (Exception e) {
+			System.out.println("Error in description: " + e.getStackTrace());
+		}
+
+	}
+
+	public void dragandDrop(By sourceelementLocator, By destinationelementLocator) {
+		try {
+			WebElement sourceElement = driver.findElement(sourceelementLocator);
+			WebElement destinationElement = driver.findElement(destinationelementLocator);
+
+			if (sourceElement.isDisplayed() && destinationElement.isDisplayed()) {
+				Actions action = new Actions(driver);
+				action.dragAndDrop(sourceElement, destinationElement).build().perform();
+			} else {
+				System.out.println("Element(s) was not displayed to drag / drop");
+			}
+		} catch (StaleElementReferenceException e) {
+			System.out.println("Element with " + sourceelementLocator + "or" + destinationelementLocator
+					+ "is not attached to the page document " + e.getStackTrace());
+		} catch (NoSuchElementException e) {
+			System.out.println("Element " + sourceelementLocator + "or" + destinationelementLocator
+					+ " was not found in DOM " + e.getStackTrace());
+		} catch (Exception e) {
+			System.out.println("Error occurred while performing drag and drop operation " + e.getStackTrace());
+		}
+	}
 }
